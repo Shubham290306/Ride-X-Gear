@@ -1,0 +1,586 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+    <style>
+      * {
+        margin: 0;
+      }
+      nav {
+        background: black;
+        padding: 0 50px;
+        height: 75px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      .c1 {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* LOGO */
+
+      .logo h2 {
+        color: white;
+        font-size: 30px;
+        letter-spacing: 1px;
+        cursor: pointer;
+      }
+
+      .logo span {
+        color: red;
+      }
+
+      /* NAV LINKS */
+
+      #navMenu {
+        display: flex;
+        list-style: none;
+        align-items: center;
+      }
+
+      #navMenu li {
+        margin-left: 35px;
+        position: relative;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      #navMenu li a {
+        text-decoration: none;
+        color: white;
+        font-size: 17px;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      #navMenu li a:hover {
+        color: red;
+      }
+
+      /* SIGNUP BUTTON */
+
+      .signup-btn a {
+        background: red;
+        padding: 10px 20px;
+        border-radius: 25px;
+        color: white !important;
+        transition: 0.3s;
+      }
+
+      .signup-btn a:hover {
+        background: white;
+        color: red !important;
+      }
+
+      /* DROPDOWN */
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #111;
+        min-width: 220px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+
+      .dropdown-content a {
+        display: block;
+        padding: 14px 20px;
+        color: white !important;
+        border-bottom: 1px solid #222;
+      }
+
+      .dropdown-content a:hover {
+        background: red;
+        color: white !important;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      /* MOBILE */
+
+      .menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 28px;
+        cursor: pointer;
+      }
+
+      @media (max-width: 850px) {
+        .menu-btn {
+          display: block;
+        }
+
+        #navMenu {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 75px;
+          right: 20px;
+          width: 280px;
+          background: black;
+          padding: 20px;
+          border-radius: 15px;
+          box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        #navMenu.show {
+          display: flex;
+        }
+
+        #navMenu li {
+          margin: 15px 0;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: relative;
+          top: 100%;
+          left: 0;
+          margin-top: 0;
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+      }
+      .pant-section {
+        padding: 80px 8%;
+        background: #f7f7f7;
+        text-align: center;
+      }
+
+      .pant-section h1 {
+        font-size: 50px;
+        margin-bottom: 20px;
+        color: #111;
+      }
+
+      .pant-desc {
+        width: 70%;
+        margin: auto;
+        color: gray;
+        font-size: 18px;
+        line-height: 1.8;
+        margin-bottom: 60px;
+      }
+
+      .pant-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 35px;
+      }
+
+      .pant-card {
+        width: 320px;
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        padding-bottom: 25px;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.12);
+        transition: 0.3s;
+        position: relative;
+      }
+      .compare-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+
+        background: red;
+        color: white;
+        text-decoration: none;
+
+        padding: 6px 12px;
+        border-radius: 20px;
+
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .compare-btn:hover {
+        background: black;
+      }
+
+      .pant-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .pant-card img {
+        width: 100%;
+        height: 260px;
+        background: #e5e5e5;
+        object-fit: cover;
+      }
+
+      .pant-card h3 {
+        margin-top: 25px;
+        font-size: 24px;
+        color: #111;
+      }
+
+      .pant-card p {
+        padding: 15px 25px;
+        color: #666;
+        line-height: 1.6;
+      }
+
+      .pant-card h2 {
+        color: red;
+        font-size: 28px;
+      }
+      .cart-btn {
+        border: none;
+        background: red;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 30px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .cart-btn:hover {
+        background: black;
+        color: white;
+      }
+      ---------------------------- .footer {
+        background-color: #000;
+        color: white;
+        padding: 50px 8% 20px;
+        margin-top: 50px;
+      }
+
+      .footer-top {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .footer-top h2 {
+        padding-top: 20px;
+        color: white;
+        font-size: 42px;
+        margin-bottom: 15px;
+      }
+
+      .footer-top span {
+        color: red;
+      }
+
+      .footer-top p {
+        width: 75%;
+        margin: auto;
+        color: #cfcfcf;
+        line-height: 1.8;
+        font-size: 16px;
+      }
+
+      .footer hr {
+        border: none;
+        border-top: 1px solid #333;
+        margin: 30px 0;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+      }
+
+      .footer-box {
+        flex: 1;
+        min-width: 220px;
+      }
+
+      .footer-box h3 {
+        color: red;
+        margin-bottom: 18px;
+        font-size: 22px;
+      }
+
+      .footer-box p {
+        color: white;
+        margin-bottom: 10px;
+        line-height: 1.7;
+      }
+
+      .footer-box a {
+        display: block;
+        text-decoration: none;
+        color: #d8d8d8;
+        margin-bottom: 12px;
+        transition: 0.3s;
+      }
+
+      .footer-box a:hover {
+        color: red;
+        padding-left: 5px;
+      }
+
+      .footer-box i {
+        color: red;
+        margin-right: 10px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+      }
+
+      .footer-bottom p {
+        color: #a8a8a8;
+        font-size: 15px;
+      }
+
+      /* Mobile */
+
+      @media (max-width: 850px) {
+        .footer-top p {
+          width: 100%;
+        }
+
+        .footer-container {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+      .div1 {
+        background-color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="c1">
+          <div class="logo">
+            <h2>Ride<span>X</span> Gear</h2>
+          </div>
+
+          <button class="menu-btn" onclick="toggleMenu()">
+            <i id="menuIcon" class="fa-solid fa-bars"></i>
+          </button>
+
+          <ul id="navMenu">
+            <li><a href="index.html">Home</a></li>
+
+            <li class="dropdown">
+              <a href="#" onclick="return false;">
+                Products
+                <i class="fa-solid fa-caret-down"></i>
+              </a>
+
+              <div class="dropdown-content">
+                <a href="helmet.html">Helmets</a>
+                <a href="jacket.html">Riding Jackets</a>
+                <a href="pants.html">Riding Pants</a>
+                <a href="gloves.html">Hand Gloves</a>
+                <a href="shoes.html">Riding Shoes</a>
+              </div>
+            </li>
+            <li><a href="products.html">Compare</a></li>
+
+            <li><a href="cart.html">Cart</a></li>
+
+            <li><a href="about.html">About</a></li>
+
+            <li class="signup-btn"><a href="login.html">Login</a></li>
+
+            <li class="signup-btn">
+              <a href="signup.html">Signup</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <section class="pant-section">
+        <h1>Riding Pants Collection</h1>
+
+        <p class="pant-desc">
+          Discover premium riding pants built for comfort, protection and
+          long-distance rides.
+        </p>
+
+        <div class="pant-container">
+          <div class="pant-card">
+            <img src="../images/pants1.jpeg" alt="" />
+
+            <a href="products.html" class="compare-btn">Compare</a>
+            <h3>Rynox Stealth Evo</h3>
+            <p>Protective riding pants with CE armour inserts.</p>
+            <h2>₹6,999</h2>
+            <a href="cart.html"><button class="cart-btn">Add To Cart</button></a>
+          </div>
+
+          <div class="pant-card">
+            <img src="../images/pants2.jpeg" alt="" />
+            <a href="products.html" class="compare-btn">Compare</a>
+            <h3>Viaterra Miller</h3>
+            <p>Comfortable touring pants with modern design.</p>
+            <h2>₹5,799</h2>
+            <a href="cart.html"><button class="cart-btn">Add To Cart</button></a>
+          </div>
+
+          <div class="pant-card">
+            <img src="../images/pants3.jpeg" alt="" />
+            <a href="products.html" class="compare-btn">Compare</a>
+            <h3>Raida Trailcraft</h3>
+            <p>Adventure riding pants for all terrains.</p>
+            <h2>₹7,499</h2>
+            <a href="cart.html"><button class="cart-btn">Add To Cart</button></a>
+          </div>
+
+          <div class="pant-card">
+            <img src="../images/pants4.jpeg" alt="" />
+            <a href="products.html" class="compare-btn">Compare</a>
+            <h3>BBG Explorer</h3>
+            <p>Premium touring pants with extra protection.</p>
+            <h2>₹6,299</h2>
+            <a href="cart.html"><button class="cart-btn">Add To Cart</button></a>
+          </div>
+
+          <div class="pant-card">
+            <img src="../images/pants5.jpeg" alt="" />
+            <a href="products.html" class="compare-btn">Compare</a>
+            <h3>Solace Rival Pro</h3>
+            <p>Stylish riding pants with superior comfort.</p>
+            <h2>₹7,999</h2>
+            <a href="cart.html"><button class="cart-btn">Add To Cart</button></a>
+          </div>
+
+          <div class="pant-card">
+            <img src="../images/pants6.jpeg" alt="" />
+            <a href="products.html" class="compare-btn">Compare</a>
+            <h3>Axor Rider Pant</h3>
+            <p>Durable riding pants for everyday use.</p>
+            <h2>₹5,499</h2>
+            <a href="cart.html"><button class="cart-btn">Add To Cart</button></a>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <div class="div1">
+      <footer class="footer">
+        <!-- Project Name & Description -->
+        <div class="footer-top">
+          <h2>Ride<span>X</span> Gear</h2>
+
+          <p>
+            RideX Gear is a premium riding gear platform that provides
+            high-quality helmets, jackets, gloves, riding pants and riding shoes
+            for bikers who value safety, comfort and style. Our mission is to
+            help every rider enjoy their journey with maximum protection and
+            confidence.
+          </p>
+        </div>
+
+        <hr />
+
+        <!-- Footer Content -->
+        <div class="footer-container">
+          <div class="footer-box">
+            <h3>Quick Links</h3>
+
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html">Login</a>
+          </div>
+
+          <div class="footer-box">
+            <h3>Support</h3>
+
+            <a href="#">FAQs</a>
+            <a href="#">Shipping Policy</a>
+            <a href="#">Return Policy</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+          </div>
+
+          <div class="footer-box">
+            <h3>Contact Info</h3>
+
+            <p>support@ridexgear.com</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📍 Mumbai, Maharashtra, India</p>
+            <p>🕒 Mon - Sat : 10 AM - 9 PM</p>
+          </div>
+
+          <div class="footer-box">
+            <h3>Follow Us</h3>
+
+            <a href="#">
+              <i class="fa-brands fa-instagram"></i>
+              Instagram
+            </a>
+
+            <a href="#">
+              <i class="fa-brands fa-facebook"></i>
+              Facebook
+            </a>
+
+            <a href="#">
+              <i class="fa-brands fa-youtube"></i>
+              YouTube
+            </a>
+
+            <a href="#">
+              <i class="fa-brands fa-x-twitter"></i>
+              Twitter
+            </a>
+
+            <a href="#">
+              <i class="fa-brands fa-linkedin"></i>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+          <p>© 2026 RideX Gear. All Rights Reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      function toggleMenu() {
+        let menu = document.getElementById("navMenu");
+        let icon = document.getElementById("menuIcon");
+
+        menu.classList.toggle("show");
+
+        if (menu.classList.contains("show")) {
+          icon.classList.remove("fa-bars");
+          icon.classList.add("fa-xmark");
+        } else {
+          icon.classList.remove("fa-xmark");
+          icon.classList.add("fa-bars");
+        }
+      }
+    </script>
+  </body>
+</html>
